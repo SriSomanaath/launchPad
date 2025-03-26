@@ -3,8 +3,8 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
 interface Comment {
   author: string;
@@ -20,7 +20,7 @@ interface Discussion {
   category: string;
   labels: string[];
   slug: string;
-  comments: Comment[];
+  comments?: Comment[];
 }
 
 const discussions: Discussion[] = [
@@ -59,33 +59,40 @@ const discussions: Discussion[] = [
   },
 ];
 
-export default function DiscussionPage() {
-  const { discussionSlug } = useParams<{ discussionSlug: string }>();
+export default function DiscussionDetailPage() {
+  const { "discussion-slug": slug } = useParams(); // Extract slug from URL
   const [discussion, setDiscussion] = useState<Discussion | null>(null);
   const [comment, setComment] = useState<string>("");
   const [comments, setComments] = useState<Comment[]>([]);
 
   useEffect(() => {
-    if (discussionSlug) {
-      const foundDiscussion = discussions.find((d) => d.slug === discussionSlug);
+    if (slug) {
+      const foundDiscussion = discussions.find((d) => d.slug === slug);
       if (foundDiscussion) {
         setDiscussion(foundDiscussion);
-        setComments(foundDiscussion.comments);
+        setComments(foundDiscussion.comments || []);
       }
     }
-  }, [discussionSlug]);
+  }, [slug]);
 
   const addComment = () => {
     if (comment.trim()) {
-      setComments([...comments, { author: "You", text: comment }]);
+      setComments((prevComments) => [...prevComments, { author: "You", text: comment }]);
       setComment("");
     }
   };
 
-  if (!discussion) return <p className="text-white">Loading...</p>;
+  if (!discussion) {
+    return (
+      <div className="min-h-screen text-black p-6">
+        <h1 className="text-2xl font-bold">Discussion Not Found</h1>
+        <p className="text-gray-500">The discussion you are looking for does not exist.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="text-black p-6">
       <h1 className="text-2xl font-bold">{discussion.title}</h1>
       <p className="text-sm text-gray-500">Posted by {discussion.author} • {discussion.date}</p>
 
@@ -116,9 +123,11 @@ export default function DiscussionPage() {
           placeholder="Add a comment..."
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className="w-full"
+          className="w-full text-black"
         />
-        <Button onClick={addComment} className="mt-2">Comment</Button>
+        <Button onClick={addComment} className="mt-2 bg-blue-500 hover:bg-blue-600">
+          Comment
+        </Button>
       </div>
     </div>
   );
