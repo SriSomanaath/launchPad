@@ -6,8 +6,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/utils/auth";
 import AuthCard from "@/components/auth/AuthCard";
 
-//Components
-
 export default async function AuthPage() {
   const session = await getServerSession(authOptions);
 

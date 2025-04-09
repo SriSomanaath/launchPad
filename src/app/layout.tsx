@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
@@ -26,7 +26,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <ToastProvider>
         <body className={`${bricolageGrotesque.className} min-h-screen`}>
           <AuthProvider>
+          <Suspense>
             <LayoutWrapper>{children}</LayoutWrapper>
+          </Suspense>
           <Toaster />
           </AuthProvider>
         </body>

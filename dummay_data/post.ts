@@ -559,6 +559,89 @@ export const posts = [
     }
   ];
 
+ export const contentSections = [
+    {
+      title: "Latest discussions",
+      buttonText: "View all discussions",
+      items: [
+        {
+          title: "Is AI taking over jobs?",
+          description: "A heated debate on the pros and cons of automation.",
+        },
+        {
+          title: "Best tools for frontend devs",
+          description: "Share your go-to tools for building modern UIs.",
+        },
+        {
+          title: "React vs Vue in 2025",
+          description: "Which framework do you prefer and why?",
+        },
+      ],
+    },
+    {
+      title: "Latest blogs",
+      buttonText: "View all blogs",
+      items: [
+        {
+          title: "How I landed a remote job",
+          description: "A story of persistence and upskilling during tough times.",
+        },
+        {
+          title: "Exploring WebAssembly",
+          description: "How it changes performance in web applications.",
+        },
+        {
+          title: "Dark mode design tips",
+          description: "Creating sleek and accessible dark UIs.",
+        },
+      ],
+    },
+    {
+      title: "Latest jobs",
+      buttonText: "View all jobs",
+      items: [
+        {
+          title: "Frontend Engineer @OpenCVU",
+          description: "We're hiring React devs for our growing CV team.",
+        },
+        {
+          title: "ML Intern - Remote",
+          description: "Learn on the job while working on real-world projects.",
+        },
+        {
+          title: "DevOps Engineer - Bangalore",
+          description: "Help us scale and secure our infrastructure.",
+        },
+      ],
+    },
+    {
+      title: "Latest articles",
+      buttonText: "View all articles",
+      items: [
+        {
+          title: "Pay supplier invoices",
+          description: "Our goal is to streamline SMB trade, making it easier and faster than ever.",
+        },
+        {
+          title: "The future of GPT models",
+          description: "What's coming next in large language models?",
+        },
+        {
+          title: "Designing with Tailwind",
+          description: "Tips for making Tailwind projects look pro.",
+        },
+      ],
+    },
+  ];
+  
+
+  export const certifications = [
+    { id: 1, image: "/certificate.webp" },
+    { id: 2, image: "/certificate.webp" },
+    { id: 3, image: "/certificate.webp" },
+    { id: 4, image: "/certificate.webp" },
+  ];
+
   export const categories = ["All Courses", "OpenCV", "Deep Learning", "Generative AI"];
   
   export const opencvCourses = [

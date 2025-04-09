@@ -23,7 +23,7 @@ export default function Layout({ children }: LayoutProps) {
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset className="mx-auto max-w-screen-2xl">
-          <header className="sticky top-0 z-50 flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear backdrop-blur-3xl bg-white/10 group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b">
+          <header className="fixed w-full top-0 z-50 flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear backdrop-blur-md bg-white/10 group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b">
             <div className="flex items-center gap-2 px-4">
               <SidebarTrigger className="-ml-1" />
               <Separator orientation="vertical" className="mr-2 h-4" />
@@ -36,7 +36,7 @@ export default function Layout({ children }: LayoutProps) {
               </Breadcrumb>
             </div>
           </header>
-          <div className="p-4">{children}</div>
+          <div className="p-4 mt-[4rem]">{children}</div>
         </SidebarInset>
       </SidebarProvider>
     </main>

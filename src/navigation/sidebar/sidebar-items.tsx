@@ -165,13 +165,8 @@ export const sidebarItemsRecruitingSpace: NavGroup[] = [
         icon: House,
       },
       {
-        title: "Job Listings",
-        path: `${basePath}job-listings`,
-        icon: File,
-      },
-      {
-        title: "Candidates",
-        path: `${basePath}candidates`,
+        title: "Hand pick candidates",
+        path: `${basePath}hand-pick-candidates`,
         icon: FileBadge2,
       },
     ],
@@ -194,10 +189,34 @@ export const sidebarItemsRecruitingSpace: NavGroup[] = [
   }
 ];
 
+export const sidebarItemsContributorSpace: NavGroup[] = [
+  {
+    id: 1,
+    label: "Writer Hub",
+    items: [
+      {
+        title: "Home",
+        path: `${basePath}contributor-home`,
+        icon: House,
+      },
+      {
+        title: "Post Articles",
+        path: `${basePath}post-articles`,
+        icon: FileBadge2,
+      },
+      {
+        title: "My Articles",
+        path: `${basePath}page-control`,
+        icon: FileBadge2,
+      },
+    ],
+  },
+];
+
 export const sidebarItemsAdminSpace: NavGroup[] = [
   {
     id: 1,
-    label: "Admin Panel",
+    label: "Community Hub",
     items: [
       {
         title: "Home",
@@ -205,13 +224,44 @@ export const sidebarItemsAdminSpace: NavGroup[] = [
         icon: House,
       },
       {
-        title: "Monetization discussion spaces",
+        title: "Monetization Discussions",
         path: `${basePath}monetization-discussion-spaces`,
         icon: File,
       },
       {
         title: "Assign Control",
         path: `${basePath}assign-control`,
+        icon: FileBadge2,
+      },
+      {
+        title: "Page Controls",
+        path: `${basePath}page-control`,
+        icon: FileBadge2,
+      },
+    ],
+  },
+  {
+    id: 2,
+    label: "Reports",
+    items: [
+      {
+        title: "Acitivity Reports",
+        path: `${basePath}activity-reports`,
+        icon: House,
+      },
+      {
+        title: "Recruiting Reports",
+        path: `${basePath}recruiting-reports`,
+        icon: File,
+      },
+      {
+        title: "Monetization Reports",
+        path: `${basePath}`,
+        icon: FileBadge2,
+      },
+      {
+        title: "Page Controls",
+        path: `${basePath}page-control`,
         icon: FileBadge2,
       },
     ],

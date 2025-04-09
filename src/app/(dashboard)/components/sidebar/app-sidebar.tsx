@@ -4,12 +4,13 @@ import * as React from "react";
 import { AudioWaveform, Command, GalleryVerticalEnd, Frame, Map, PieChart } from "lucide-react";
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar";
-import { sidebarItems, sidebarItemsLaunchPad, sidebarItemsRecruitingSpace, sidebarItemsAdminSpace } from "@/navigation/sidebar/sidebar-items";
+import { sidebarItems, sidebarItemsLaunchPad, sidebarItemsRecruitingSpace, sidebarItemsContributorSpace, sidebarItemsAdminSpace } from "@/navigation/sidebar/sidebar-items";
 
 import SidebarFooterMenu from "./sidebar-footer-menu";
 import SidebarNavigation from "./sidebar-navigation";
 import { TeamSwitcher } from "./team-switcher";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const teams = [
   {
@@ -28,6 +29,11 @@ const teams = [
     plan: "Community",
   },
   {
+    name: "Contributor",
+    logo: Map,
+    plan: "Writer Hub",
+  },
+  {
     name: "Admin",
     logo: Frame,
     plan: "Admin Panel",
@@ -37,6 +43,7 @@ const teams = [
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [selectedTeam, setSelectedTeam] = React.useState(teams[0].name); // Default to first team
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   const user = {
     name: session?.user?.name || "",
@@ -50,6 +57,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         return sidebarItemsRecruitingSpace;
       case "Launch pad":
         return sidebarItemsLaunchPad;
+      case "Contributor":
+        return sidebarItemsContributorSpace;
       case "Admin":
         return sidebarItemsAdminSpace;
       case "Community":
@@ -58,6 +67,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         return sidebarItems;
     }
   };
+
+  React.useEffect(() => {
+    if (sidebarItems.length > 0 && sidebarItems[0].items.length > 0) {
+      const firstRoute = sidebarItems[0].items[0].path;
+      router.push(firstRoute);
+    }
+  }, [selectedTeam, router]);
 
   return (
     <Sidebar collapsible="icon" {...props}>

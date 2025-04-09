@@ -10,7 +10,11 @@ const config = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        sm: "600px",
+        md: "728px",
+        lg: "984px",
+        xl: "1140px",
+        "2xl": "1280px", // smaller than the default 1400px
       },
     },
     extend: {
@@ -93,6 +97,10 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontSize: {
+        '3xl': '3rem',
+        '6xl': '7rem',
+      }
     },
   },
   plugins: [tailwindcssAnimate],

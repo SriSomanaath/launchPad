@@ -21,6 +21,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "originui.com",
       },
+      {
+        protocol: "https",
+        hostname: "opencv.org",
+      }
     ],
   },
 }

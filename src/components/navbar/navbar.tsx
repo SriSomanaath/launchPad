@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
   {
@@ -55,14 +56,16 @@ const NAV_ITEMS = [
 ];
 
 const Navbar = () => {
-  return (
-    <header className="w-full border-b bg-white">
-      <div className="container mx-auto flex items-center justify-between p-4">
-        <div className="flex items-center space-x-6">
-          <Link href="/" className="text-xl font-bold">
-            <Image src="/Logo_2.png" alt="launch pad" height={160} width={160} />
-          </Link>
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  return (
+    <header className="w-full bg-white z-50">
+      <div className="container mx-auto flex items-center justify-between px-4 py-4">
+        <Link href="/" className="flex items-center space-x-2">
+          <Image src="/Logo_2.png" alt="Logo" width={140} height={40} />
+        </Link>
+
+        <div className="hidden md:flex items-center space-x-8">
           <NavigationMenu>
             <NavigationMenuList className="flex space-x-6">
               <NavigationMenuItem>
@@ -111,20 +114,50 @@ const Navbar = () => {
               <NavigationMenuItem>
                 <Link href="/home" passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Hire talent
+                    Hire Talent
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/about-us" passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    About Us
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
+
+          {/* Auth Buttons */}
+          <div className="flex items-center space-x-4">
+            <Button variant="ghost">
+              <Link href="/auth/login">Log In</Link>
+            </Button>
+            <Button asChild size="lg" className="bg-black text-white border rounded-full hover:text-black hover:border-black hover:bg-white">
+              <Link href="/auth/login">Sign In</Link>
+            </Button>
+          </div>
         </div>
 
-        <div>
-          <Button>
-            <Link href="/auth/login" passHref>Sign In</Link>
-          </Button>
+        {/* Mobile Hamburger */}
+        <div className="md:hidden">
+          <button onClick={() => setMobileOpen(!mobileOpen)}>
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {mobileOpen && (
+        <div className="md:hidden bg-white shadow-inner px-4 pb-4 space-y-4">
+          <Link href="/home" className="block">Hire Talent</Link>
+          <Link href="/about-us" className="block">About Us</Link>
+          <Link href="/auth/login" className="block">Log In</Link>
+          <Link href="/auth/login">
+            <Button className="w-full bg-black text-white rounded-full mt-2">Sign In</Button>
+          </Link>
+        </div>
+      )}
     </header>
   );
 };
